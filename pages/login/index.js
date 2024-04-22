@@ -34,7 +34,7 @@ const LoginPage = () => {
         return res.json()
     }).then(data => {
         setIsInvalid(false);
-        
+        localStorage.setItem('user', JSON.stringify(data.user));
         router.push("/");
     })
   };
