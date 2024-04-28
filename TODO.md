@@ -1,0 +1,8 @@
+- [ ] Add order completion page
+- [ ] PDF creation
+- [ ] Order tracking
+- [ ] Product details
+- [ ] Profile Page
+- [ ] Settings Page
+- [ ] Add security measures to prevent BurpSuite attacks
+- [ ] Add easter eggs
