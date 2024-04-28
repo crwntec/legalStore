@@ -15,13 +15,15 @@ export default async function handle(req, res) {
     res.status(401).json({ message: "Are you dumb" });
     return;
   }
-  const authData = await pb
+  await pb
     .collection("users")
     .authWithPassword(email, password);
   if (pb.authStore.isValid) {
     const cookie = pb.authStore.exportToCookie({ httpOnly: false });
     res.setHeader("Set-Cookie", cookie);
-    res.status(200).json({ message: "Logged in" });
+    res.status(200).json({ 
+      user: pb.authStore.model,
+     });
   } else {
     res.status(401).json({ message: "Invalid credentials" });
   }
