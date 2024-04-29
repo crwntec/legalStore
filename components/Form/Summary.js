@@ -24,11 +24,11 @@ function Summary({ cart, card, delivery, user }) {
       body: JSON.stringify({
         user: user.id,
         cart: cart.id,
-        address: delivery,
+        delivery: delivery,
         payment: card,
         total: total,
         subtotal: subtotal,
-        delivery: deliveryFee,
+        deliveryFee: deliveryFee,
       }),
     })
       .then((res) => res.json())
