@@ -14,12 +14,12 @@ export default async function handle(req, res) {
                 .create({
                     user: body.user,
                     cart: body.cart,
-                    address: body.address,
+                    delivery: body.delivery,
                     payment: body.payment,
                     total: body.total,
                     subtotal: body.subtotal,
-                    delivery: body.delivery,
-                    status: "pending",
+                    deliveryFee: body.deliveryFee,
+                    status: 0,
                 })
                 .then((order) => {
                     res.status(200).json(order);
