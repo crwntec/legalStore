@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 function Navbar({ cart, user, router }) {
   useEffect(() => {
-    user !== undefined && cart !== undefined
+    user.id !== undefined && cart.id !== undefined
       ? fetch(`/api/cart?user=${user.id}&id=${cart.id}`, {
           method: "PUT",
           body: JSON.stringify(cart),

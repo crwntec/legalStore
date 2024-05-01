@@ -9,7 +9,10 @@ function Home() {
   const [user, setUser] = useState({});
   const router = useRouter();
 
+  const [theme, setTheme] = useState("dark")
+
   useEffect(() => {
+
     const user = JSON.parse(localStorage.getItem("user"));
     setUser(user);
     fetch("/api/products")

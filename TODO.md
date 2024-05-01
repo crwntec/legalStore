@@ -1,4 +1,4 @@
-- [ ] Add order completion page
+- [x] Add order completion page
 - [ ] PDF creation
 - [ ] Order tracking
 - [ ] Product details

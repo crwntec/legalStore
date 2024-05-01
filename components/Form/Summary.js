@@ -23,7 +23,7 @@ function Summary({ cart, card, delivery, user }) {
       method: "POST",
       body: JSON.stringify({
         user: user.id,
-        cart: cart.id,
+        cart: cart,
         delivery: delivery,
         payment: card,
         total: total,
