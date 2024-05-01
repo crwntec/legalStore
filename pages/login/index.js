@@ -4,7 +4,6 @@ import React, { useState } from "react";
 const LoginPage = () => {
   const router = useRouter();
 
-  const [isInvalid, setIsInvalid] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -33,7 +32,6 @@ const LoginPage = () => {
          }
         return res.json()
     }).then(data => {
-        setIsInvalid(false);
         localStorage.setItem('user', JSON.stringify(data.user));
         router.push("/");
     })
@@ -95,6 +93,12 @@ const LoginPage = () => {
                 Login
               </button>
             </div>
+            <div className="italic text-sm text-center mt-4">
+              Don't have an account?{" "}
+              <a href='/register' className="link">
+                Register
+              </a>
+              </div>
           </form>
         </div>
       </div>

@@ -6,7 +6,7 @@ export function middleware(request) {
     const cookie = request.headers.get("Cookie");
 
     
-    if (!cookie && request.nextUrl.pathname.startsWith("/login")) {
+    if (!cookie && request.nextUrl.pathname.startsWith("/login") || request.nextUrl.pathname.startsWith("/register")) {
         return;
     }
     let isValid = cookie !== undefined;
@@ -16,7 +16,7 @@ export function middleware(request) {
     }
     
     
-    if (!isValid&& !request.nextUrl.pathname.startsWith("/login")) {
+    if (!isValid&& !request.nextUrl.pathname.startsWith("/login") && !request.nextUrl.pathname.startsWith("/register")) {
         return Response.redirect(new URL("/login", request.url));
     }
 

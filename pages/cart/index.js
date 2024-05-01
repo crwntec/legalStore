@@ -167,13 +167,14 @@ const Cart = () => {
                     ? cart.items.length == 0
                       ? "btn-ghost"
                       : "btn-primary"
-                    : "btn-error")
+                    : "btn-ghost")
                 }
                 onClick={() => {
                   cart.items.length > 0
                     ? router.push(`/checkout?id=${cart.id}`)
                     : {};
                 }}
+                disabled={!cart.items}
               >
                 Checkout
               </button>

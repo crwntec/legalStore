@@ -23,7 +23,7 @@ export default async function handle(req, res) {
                 })
                 .then((order) => {
                     res.status(200).json(order);
-                    resolve();
+                    pb.collection("carts").delete(body.cart.id).then(()=>resolve()).catch((e)=>console.log(e))
                 })
                 .catch((e) => {
                     res.status(500).json({ message: e.message });
