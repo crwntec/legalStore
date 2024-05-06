@@ -52,7 +52,7 @@ const Cart = () => {
   };
   return (
     <div>
-      <Navbar cart={cart} user={user} router={router} />
+      <Navbar cart={cart} />
       <dialog id="confirmDeletePrompt" className="modal">
         <div className="modal-box">
           <p>Are you sure you want to delete this item?</p>

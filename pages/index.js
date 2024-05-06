@@ -26,7 +26,7 @@ function Home() {
 
   useEffect(() => {
     cart.items && user
-      ? fetch(`/api/cart?user=${user.id}&cart=${cart.id}`, {
+      ? fetch(`/api/cart?user=${user.id}&id=${cart.id}`, {
           method: "PUT",
           body: JSON.stringify(cart),
         })
@@ -53,9 +53,9 @@ function Home() {
 
   return (
     <div>
-     <Navbar cart={cart} user={user} router={router} />
+     <Navbar cart={cart} />
       <main className="p-10">
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
           {products.map((product) => (
             <div
               className="card-compact w-96 h-96 bg-base-100 shadow-xl"

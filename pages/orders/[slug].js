@@ -3,11 +3,12 @@ import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { baseURL } from "../../data/baseURL";
 import Navbar from "../../components/Navbar";
-import Checkmark from "../../icons/Checkmark";
+
+import { UilHourglass } from "@iconscout/react-unicons";
 import CheckmarkHollow from "../../icons/CheckmarkHollow";
 
 export const getServerSideProps = async (context) => {
-  const res = await fetch(`${baseURL}/api/orders?id=${context.query.id}`);
+  const res = await fetch(`${baseURL}/api/orders?id=${context.params.slug}`);
   const order = await res.json();
 
   const cartRes = await fetch(`${baseURL}/api/cart?user=${order.user}`);
@@ -28,7 +29,7 @@ function Order({ order, cart }) {
 
   return (
     <>
-      <Navbar cart={cart} user={user} router={router} />
+      <Navbar cart={cart} />
       <div className="container mx-auto p-4">
         <div className="flex flex-col items-center">
           <CheckmarkHollow size={100} />
@@ -38,13 +39,36 @@ function Order({ order, cart }) {
           </h1>
         </div>
         <div className="container">
-          <h1 className="text-2xl font-bold mb-4">Order Status</h1>
           <div className="flex justify-center">
             <ul className="steps steps-vertical lg:steps-horizontal">
-              <li className={"step " + (order.status >= 0 ? 'step-primary' : 'step')}>Order confirmed</li>
-              <li className={"step " + (order.status >= 1 ? 'step-primary' : 'step')}>Order shipped</li>
-              <li className={"step " + (order.status >= 2 ? 'step-primary' : 'step')}>Out for delivery</li>
-              <li className={"step " + (order.status >= 3 ? 'step-primary' : 'step')}>Delivered</li>
+              <li
+                className={
+                  "step " + (order.status >= 0 ? "step-primary" : "step")
+                }
+              >
+                Pending
+              </li>
+              <li
+                className={
+                  "step " + (order.status >= 1 ? "step-primary" : "step")
+                }
+              >
+                Processing
+              </li>
+              <li
+                className={
+                  "step " + (order.status >= 2 ? "step-primary" : "step")
+                }
+              >
+                Shipped
+              </li>
+              <li
+                className={
+                  "step " + (order.status >= 3 ? "step-primary" : "step")
+                }
+              >
+                Delivered
+              </li>
             </ul>
           </div>
         </div>
@@ -74,7 +98,10 @@ function Order({ order, cart }) {
           </div>
         </div>
         <div className="w-full mt-4">
-        <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-200">
+          <div
+            tabIndex={0}
+            className="collapse collapse-arrow border border-base-300 bg-base-200"
+          >
             <div className="text-2xl font-bold mb-4 collapse-title">
               Order Summary
             </div>

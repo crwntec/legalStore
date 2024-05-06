@@ -7,11 +7,19 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [isInvalid, setIsInvalid] = useState(false)
+
   const handleSubmit = async (e) => {
-      e.preventDefault();
-      
+    e.preventDefault();
+    if (!email || !email.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/)) setEmail(null)
+    if(!password || !password.match(/.{7,}/)) setPassword(null)
       if (!email || !password) {
-          return;
+        if (e.target[0].value != "") {
+          setEmail(e.target[0].value)
+          setPassword(e.target[1].value)
+        } else {
+          return
+        }
       }
 
     fetch("/api/login", {
@@ -42,9 +50,9 @@ const LoginPage = () => {
       <div className="card">
         <div className="card-body flex items-center">
           <h2 className="card-title">Login</h2>
-          <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
+          <form className="max-w-md mx-auto" onSubmit={handleSubmit} noValidate>
             <div className="form-control mb-4">
-              <label className="input input-bordered flex items-center gap-2">
+            <label className={"input input-bordered flex items-center gap-2 " + (email == null || isInvalid ? "border-red-500 rounded" : "")}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
@@ -56,16 +64,18 @@ const LoginPage = () => {
                 </svg>
                 <input
                   type="text"
-                  className="grow"
                   placeholder="Email"
+                  autoComplete="current-email"
+                  className="grow"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   onBlur={(e) => setEmail(e.target.value)}
                 />
               </label>
+                {email == null ? <p class="text-red-500 text-xs italic">Please enter a email!</p> : <></>}
             </div>
-            <div className="form-control mb-4">
-              <label className="input input-bordered flex items-center gap-2">
+            <div className="form-control mb-4"> 
+              <label className={"input input-bordered flex items-center gap-2 " + (password == null || isInvalid ? "border-red-500 rounded" : "")}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
@@ -82,12 +92,16 @@ const LoginPage = () => {
                   type="password"
                   className="grow"
                   placeholder="Password"
+                  autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   onBlur={(e) => setPassword(e.target.value)}
+                  required={true}
                 />
               </label>
+                {password == null ? <p class="text-red-500 text-xs italic">Please enter a password!</p> : <></>}
             </div>
+            {isInvalid ? <p className="text-red-500 text-sm italic">Invalid credentials!</p> : <></>}
             <div className="form-control mt-6 mb-4">
               <button type="submit" className="btn btn-primary">
                 Login

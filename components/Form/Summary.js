@@ -15,7 +15,6 @@ const calculatePrices = (cart) => {
 };
 
 function Summary({ cart, card, delivery, user }) {
-  console.log(calculatePrices(cart));
   const [ total, subtotal, deliveryFee] = calculatePrices(cart);
   const router = useRouter();
   const submitOrder = () => {
@@ -33,7 +32,7 @@ function Summary({ cart, card, delivery, user }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        router.push(`/order?id=${data.id}`);
+        router.push(`/orders/${data.id}`);
       });
   };
 
@@ -69,11 +68,11 @@ function Summary({ cart, card, delivery, user }) {
             <div key={item.id} className="flex items-center mb-2">
               <img
                 src={item.thumbnail}
-                alt={item.name}
+                alt={item.title}
                 className="w-10 h-10 mr-2"
               />
               <div>
-                <p className="font-bold">{item.name}</p>
+                <p className="font-bold">{item.title}</p>
                 <p className="text-sm text-gray-500">
                   Quantity: {item.quantity}
                 </p>

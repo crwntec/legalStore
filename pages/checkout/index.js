@@ -33,7 +33,7 @@ function Checkout() {
 
   return (
     <div>
-      <Navbar cart={cart} user={user} router={router} />
+      <Navbar cart={cart} />
       <div className="flex flex-col items-center">
         <div className="breadcrumbs">
           <ul>
