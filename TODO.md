@@ -1,4 +1,6 @@
 - [x] Add order completion page
+- [ ] Fix passeord confirmation
+- [ ] Change order overview layout
 - [ ] PDF creation
 - [ ] Order tracking
 - [ ] Product details
