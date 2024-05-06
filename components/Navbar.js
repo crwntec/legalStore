@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-function Navbar({ cart, user, router }) {
+import { useRouter } from "next/router";
+function Navbar({ cart }) {
+  const [user, setUser] = useState({});
+  const router = useRouter();
   useEffect(() => {
     user.id !== undefined && cart.id !== undefined
       ? fetch(`/api/cart?user=${user.id}&id=${cart.id}`, {
@@ -8,6 +11,14 @@ function Navbar({ cart, user, router }) {
         }).catch((e) => (e.status == 500 ? {} : console.log(e)))
       : {};
   }, [cart]);
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    setUser(user);
+    !cart ? fetch(`/api/cart?user=${user.id}`, { method: "GET" })
+      .then((res) => res.json())
+      .then((cart) => setCart(cart))
+      .then(() => {}) : {} ;
+  }, []);
 
   const handleLogout = () => {
     fetch("/api/login", { method: "DELETE" })
@@ -109,6 +120,11 @@ function Navbar({ cart, user, router }) {
               <li>
                 <a>
                   Settings <span className="badge">Coming soon</span>
+                </a>
+              </li>
+              <li>
+                <a className="justify-between" href="/orders">
+                  My orders{" "}
                 </a>
               </li>
               <li>
