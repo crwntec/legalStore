@@ -6,7 +6,11 @@ export default async function handle(req, res) {
   const url = new URL(req.url, `http://${req.headers.host}`);
   const user = url.searchParams.get("user");
   const cartId = url.searchParams.get("id");
-  const cookie = 'pb_auth='+req.cookies["pb_auth"];
+  const cookie = 'pb_auth=' + req.cookies["pb_auth"];
+  if (user == 'undefined') {
+    res.status(201)
+    return
+  }
 
   await pb.authStore.loadFromCookie(cookie);
   if (req.method == "GET") {

@@ -8,12 +8,13 @@ function Navbar({ cart }) {
       ? fetch(`/api/cart?user=${user.id}&id=${cart.id}`, {
           method: "PUT",
           body: JSON.stringify(cart),
-        }).catch((e) => (e.status == 500 ? {} : console.log(e)))
+        }).catch((e) => (e.status == 500 ? {} : {}))
       : {};
   }, [cart]);
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     setUser(user);
+    
     !cart ? fetch(`/api/cart?user=${user.id}`, { method: "GET" })
       .then((res) => res.json())
       .then((cart) => setCart(cart))
