@@ -96,7 +96,7 @@ function Home() {
                   >
                     Add to cart
                   </button>
-                  <button className="btn">Details</button>
+                  <button className="btn" onClick={()=>router.push(`/products/${product.id}`)}>Details</button>
                 </div>
               </div>
             </div>
