@@ -104,7 +104,7 @@ function Navbar({ cart }) {
               <div className="w-10 rounded-full">
                 <img
                   alt="Tailwind CSS Navbar component"
-                  src={`http://127.0.0.1:8090/api/files/_pb_users_auth_/${user.id}/${user.avatar}`}
+                  src={user.avatar ? `http://127.0.0.1:8090/api/files/_pb_users_auth_/${user.id}/${user.avatar}` : 'https://static.vecteezy.com/system/resources/previews/009/734/564/non_2x/default-avatar-profile-icon-of-social-media-user-vector.jpg'}
                 />
               </div>
             </div>
