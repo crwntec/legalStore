@@ -26,7 +26,20 @@ function Navbar({ cart }) {
       .then(() => (document.cookie = "pb_auth=;"))
       .then(() => localStorage.removeItem("user"))
       .then(() => router.push("/login"));
-  };
+
+    };
+    const getRandomImage = () => {
+      const images = [
+        "https://pngimg.com/uploads/stalin/stalin_PNG39.png",
+       " https://images2.alphacoders.com/743/74302.jpg",
+       "https://th.bing.com/th/id/R.937563739611ad0f6203c0586f2ca723?rik=NaHg55Q%2f04xEIg&pid=ImgRaw&r=0",
+       "https://i.pinimg.com/originals/c9/fd/7a/c9fd7a38f5e26cfdfb505cdde267f55b.jpg",
+       "https://th.bing.com/th/id/R.9390be60f24f340bea5db5167058bb01?rik=2w79rUlyMoVr%2fg&pid=ImgRaw&r=0",
+       "https://www.bellevuecollege.edu/wp-content/uploads/sites/25/2013/08/karl_marx.jpg",
+       "https://4.bp.blogspot.com/-VNJ3R00nBXE/V1tGJ9C-7PI/AAAAAAAA398/C2MXeVpSlc42Mo6mlQntx_EGWCsnom6jACLcB/s1600/kim-jong-un.JPG"
+      ];
+      return images[Math.floor(Math.random() * images.length)];
+    }
   return (
     <div>
       <div className="navbar bg-base-100 border-b-[1px] border-gray-600 sticky">
@@ -104,7 +117,7 @@ function Navbar({ cart }) {
               <div className="w-10 rounded-full">
                 <img
                   alt="Tailwind CSS Navbar component"
-                  src={user.avatar ? `http://127.0.0.1:8090/api/files/_pb_users_auth_/${user.id}/${user.avatar}` : 'https://static.vecteezy.com/system/resources/previews/009/734/564/non_2x/default-avatar-profile-icon-of-social-media-user-vector.jpg'}
+                  src={user.avatar !== "" ? `http://127.0.0.1:8090/api/files/_pb_users_auth_/${user.id}/${user.avatar}` : getRandomImage()}
                 />
               </div>
             </div>
