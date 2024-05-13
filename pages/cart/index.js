@@ -86,7 +86,7 @@ const Cart = () => {
                     alt={item.name}
                     className="w-30 h-20"
                   />
-                  <span>{item.title}</span>
+                  <span className="hover:cursor-pointer" onClick={()=>router.push(`/products/${item.id}`)}>{item.title}</span>
                 </div>
                 <div className="flex flex-row mt-5 sm:mt-0 items-center">
                   <div className="relative sm:w-40">
