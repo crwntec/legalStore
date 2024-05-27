@@ -16,7 +16,7 @@ To get started with My Totally Legal Web Shop, follow these steps:
 1. Clone this repository to your local machine.
 2. Install dependencies using npm or yarn: `npm install` or `yarn install`.
 3. Start the development server: `npm run dev` or `yarn dev`.
-4. Run Pocketbase: ´./pocketbase` or `pocketbase.exe` (depending on your os)
+4. Run Pocketbase: `./pocketbase` or `pocketbase.exe` (depending on your os)
 5. Visit `http://localhost:3000` in your browser to view the web shop.
 
 ## Technologies Used
