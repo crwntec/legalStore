@@ -18,6 +18,8 @@
 # misc
 .DS_Store
 *.pem
+pb_data/
+pb_migrations/
 
 # debug
 npm-debug.log*
